@@ -60,7 +60,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iqp-m4-u2i">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iqp-m4-u2i">
                                             <rect key="frame" x="58" y="32" width="59" height="23"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -74,17 +74,17 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="avn-NB-zIb" firstAttribute="leading" secondItem="Iqp-m4-u2i" secondAttribute="trailing" constant="29" id="7YJ-ys-Oyh"/>
+                                        <constraint firstItem="Iqp-m4-u2i" firstAttribute="leading" secondItem="7UL-5M-Nr4" secondAttribute="leading" id="4mI-JU-2cN"/>
+                                        <constraint firstItem="Iqp-m4-u2i" firstAttribute="top" secondItem="7UL-5M-Nr4" secondAttribute="bottom" constant="3" id="CA9-6Y-N77"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="avn-NB-zIb" secondAttribute="trailing" constant="-8" id="OJh-gS-b3d"/>
                                         <constraint firstAttribute="centerY" secondItem="avn-NB-zIb" secondAttribute="centerY" constant="0.5" id="Rxz-ck-h2I"/>
                                         <constraint firstItem="avn-NB-zIb" firstAttribute="leading" secondItem="7UL-5M-Nr4" secondAttribute="trailing" constant="29" id="U7C-y6-27H"/>
-                                        <constraint firstItem="Iqp-m4-u2i" firstAttribute="top" secondItem="7UL-5M-Nr4" secondAttribute="bottom" constant="4" id="bVT-fp-BmW"/>
+                                        <constraint firstItem="Iqp-m4-u2i" firstAttribute="trailing" secondItem="7UL-5M-Nr4" secondAttribute="trailing" id="UkZ-9H-peO"/>
                                         <constraint firstAttribute="centerY" secondItem="xWp-xv-PK1" secondAttribute="centerY" id="bd5-lu-E0C"/>
                                         <constraint firstItem="xWp-xv-PK1" firstAttribute="leading" secondItem="F1Y-m3-OlV" secondAttribute="leadingMargin" id="dUD-nW-IjJ"/>
-                                        <constraint firstItem="Iqp-m4-u2i" firstAttribute="leading" secondItem="xWp-xv-PK1" secondAttribute="trailing" constant="8" id="epP-XC-W7W"/>
                                         <constraint firstItem="7UL-5M-Nr4" firstAttribute="top" secondItem="F1Y-m3-OlV" secondAttribute="topMargin" id="ipK-5k-vGc"/>
-                                        <constraint firstItem="Iqp-m4-u2i" firstAttribute="bottom" secondItem="F1Y-m3-OlV" secondAttribute="bottomMargin" id="kjl-PS-XBY"/>
                                         <constraint firstItem="7UL-5M-Nr4" firstAttribute="leading" secondItem="xWp-xv-PK1" secondAttribute="trailing" constant="8" id="npj-Gs-veD"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Iqp-m4-u2i" secondAttribute="bottom" constant="-1" id="ry4-Eu-Pp5"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

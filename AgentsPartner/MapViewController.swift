@@ -22,32 +22,6 @@ class MapViewController: UIViewController {
     var lastAnnotation: MKAnnotation!
     var specimens = try! Realm().objects(Specimen)
     
-    
-    //MARK: - Helper Methods
-    
-    func centerToUsersLocation() {
-        let center = mapView.userLocation.coordinate
-        let zoomRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(center, kDistanceMeters, kDistanceMeters)
-        mapView.setRegion(zoomRegion, animated: true)
-    }
-    
-    func addNewPin() {
-        if lastAnnotation != nil {
-            let alertController = UIAlertController(title: "Annotation already dropped", message: "There is an annotation on screen. Try dragging it if you want to change its location!", preferredStyle: .Alert)
-            let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Destructive) { alert in
-                alertController.dismissViewControllerAnimated(true, completion: nil)
-            }
-            alertController.addAction(alertAction)
-            presentViewController(alertController, animated: true, completion: nil)
-            
-        } else {
-            let specimen = SpecimenAnnotation(coordinate: mapView.centerCoordinate, title: "Empty", subtitle: "Uncategorized")
-            
-            mapView.addAnnotation(specimen)
-            lastAnnotation = specimen
-        }
-    }
-    
     //MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -114,6 +88,29 @@ class MapViewController: UIViewController {
 
 //MARK: - Helper Functions
 extension MapViewController {
+    
+    func centerToUsersLocation() {
+        let center = mapView.userLocation.coordinate
+        let zoomRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(center, kDistanceMeters, kDistanceMeters)
+        mapView.setRegion(zoomRegion, animated: true)
+    }
+    
+    func addNewPin() {
+        if lastAnnotation != nil {
+            let alertController = UIAlertController(title: "Annotation already dropped", message: "There is an annotation on screen. Try dragging it if you want to change its location!", preferredStyle: .Alert)
+            let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Destructive) { alert in
+                alertController.dismissViewControllerAnimated(true, completion: nil)
+            }
+            alertController.addAction(alertAction)
+            presentViewController(alertController, animated: true, completion: nil)
+            
+        } else {
+            let specimen = SpecimenAnnotation(coordinate: mapView.centerCoordinate, title: "Empty", subtitle: "Uncategorized")
+            
+            mapView.addAnnotation(specimen)
+            lastAnnotation = specimen
+        }
+    }
     
     func populateMap(){
         mapView.removeAnnotations(mapView.annotations)
