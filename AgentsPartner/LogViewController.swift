@@ -13,7 +13,7 @@ import RealmSwift
 class LogViewController: UITableViewController {
     
     var specimens = try! Realm().objects(Specimen).sorted("name", ascending: true)
-    var searchResults = []
+    var searchResults = try! Realm().objects(Specimen)
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
@@ -48,13 +48,50 @@ class LogViewController: UITableViewController {
     //MARK: - Actions & Segues
     
     @IBAction func scopeChanged(sender: AnyObject) {
+        let scopeBar = sender as! UISegmentedControl
+        let realm = try! Realm()
+        
+        switch scopeBar.selectedSegmentIndex {
+        case 0:
+            specimens = realm.objects(Specimen).sorted("name", ascending: true)
+        case 1:
+            specimens = realm.objects(Specimen).sorted("created", ascending: true)
+        default:
+            specimens = realm.objects(Specimen).sorted("name", ascending: true)
+        }
+        
+        tableView.reloadData()
     }
+}
+
+// MARK: - Helper functions
+extension LogViewController {
+    
+    func filterResultsWithSearchString(searchString: String){
+        let predicate = NSPredicate(format: "name BEGINSWITH [c]%@", searchString)
+        let scopeIndex = searchController.searchBar.selectedScopeButtonIndex
+        
+        let realm = try! Realm()
+        
+        switch scopeIndex {
+        case 0:
+            searchResults = realm.objects(Specimen).filter(predicate).sorted("name", ascending: true)
+        case 1:
+            searchResults = realm.objects(Specimen).filter(predicate).sorted("created", ascending: true)
+        default:
+            searchResults = realm.objects(Specimen).filter(predicate)
+        }
+    }
+    
 }
 
 // MARK: - UISearchResultsUpdating
 extension LogViewController: UISearchResultsUpdating {
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
+        let searchString = searchController.searchBar.text!
+        self.filterResultsWithSearchString(searchString)
+        
         let searchResultsController = searchController.searchResultsController as! UITableViewController
         searchResultsController.tableView.reloadData()
     }
@@ -80,7 +117,7 @@ extension LogViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("LogCell") as! LogCell
         
-        let specimen = specimens[indexPath.row]
+        let specimen = searchController.active ? searchResults[indexPath.row] : specimens[indexPath.row]
         
         cell.titleLabel.text = specimen.name
         cell.subtitleLabel.text = specimen.category.name
